@@ -3,3 +3,4 @@
 *.p12
 *.crt
 *.private
+*.code-workspace
