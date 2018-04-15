@@ -1,2 +1,5 @@
 *.exe
 *.pem
+*.p12
+*.crt
+*.private
