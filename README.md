@@ -1,26 +1,48 @@
-# GoHTTPS
-Go web API using TSL and GraphQL
-___
+# GoHttpsGraphy
+Golang web API using TSL and GraphQL
+
+---
 
 ## Public key generator
-Generate a public key in the same directory and type for **[host]** your address (without brackets).
+To actually have a HTTPS connection you need a private and a public key, this example is **only for testing** and **mustn't be used in production.**
+
+To generate a public key, run this in your console and in the same directory as your is, and type for **[host]** your address (without brackets).
 
 For example just use **"localhost"**
 ```
 go run $GOROOT/src/crypto/tls/generate_cert.go --host=[host]
 ```
 
-Remember the file **key.pem is the private** key and **cert.pem is your public** key.
+Remember the file `key.pem` is the private key and `cert.pem` is your public key.
 
-## Request examples
-```
-curl --get --url "https://localhost:443" --insecure
-```
-Using `--insecure` prevents SSL certificate checking, otherwise it wouldn't work, cause this self created SSL certificate is not registered by a certificate Authority.
+## GraphQL
+To use GraphQL, use a GraphQL playground ([Like this one](https://github.com/graphcool/graphql-playground)) and then feel free to query.
 
-Now to use GraphQL use the request with this URL param (Just attach it to the URL).
 ```
-?query={User{Id,Name{First,Last}}}
+query {
+	users {
+		id
+		name {first last}
+		email
+	}
+	user(id: 1) {
+		name {first last}
+		birthdate {month day year}
+		gender
+		phone
+		jobs
+		created
+		edited
+	}
+}
 ```
 
-_Still working on GraphQL. Description follows..._
+URL requests like `<host>/graph?query={<query>}` will be supported soon...
+
+### ToGetDone list:
+* [x] Implement GraphQL
+* [ ] Support HTTPS _(Currently not working cuase of issues with certificate)_
+* [ ] Finish GraphQL examples
+* [ ] Support GraphQL URL query
+
+_Description follows..._
